@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.apps.filed.com/guides/authentication and
+  https://docs.apps.filed.com/guides/connect-mcp
+description: >-
+  Filed GraphQL API authentication profile. A two-step token model: a long-lived,
+  workspace-scoped API key created in the Filed web app is exchanged at request
+  time for a short-lived (~30 min) access token sent as a Bearer credential.
+  MCP clients use OAuth instead of an API key.
+endpoint: https://router.apps.filed.com/graphql
+schemes:
+  - id: bearer_access_token
+    type: http
+    scheme: bearer
+    format: JWT (workspaceToken or userToken)
+    location: Authorization header
+    description: >-
+      Short-lived access token (~30 minutes) minted by exchanging an API key.
+      workspaceToken is used for workspace-scoped calls; userToken is account-wide.
+      Sent on every operation except @public ones (health, the token exchange).
+  - id: api_key
+    type: apiKey
+    description: >-
+      Long-lived credential created per workspace in the Filed web app under
+      Plugins -> Filed API. Shown once; store in a secret manager. Exchanged via
+      exchangeSurfaceRefreshTokenForAccessTokens (passed as refreshToken).
+      Personal — authenticates as the creating user, scoped to one workspace.
+    expiry_options_days: [30, 60, 90, 365]
+    default_expiry_days: 90
+    access_levels:
+      - value: read_only
+        description: Queries only; all mutations rejected.
+      - value: read_write
+        description: Queries plus mutations (upload documents, trigger runs, modify data).
+  - id: mcp_oauth
+    type: oauth2
+    flow: Dynamic Client Registration (RFC 7591) + browser consent
+    description: >-
+      MCP clients connect to https://mcp.apps.filed.com/mcp with OAuth, no API key.
+      The client performs DCR and redirects the user to sign in and approve the
+      connection for one workspace. See mcp/filed-mcp.yml.
+token_exchange:
+  mutation: exchangeSurfaceRefreshTokenForAccessTokens
+  public: true
+  input: refreshToken (the API key)
+  returns: [userToken, workspaceToken]
+  token_lifetime: ~30 minutes; re-exchange the same API key on expiry/401
+default_security: bearer_access_token (workspaceToken)
+notes:
+  - New API keys are deliberately workspace-scoped (unlike legacy partner keys that spanned all partner workspaces).
+  - Verify a token with the `me` query (resolves to WorkspaceUser for a workspaceToken).
