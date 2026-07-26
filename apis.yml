@@ -1,22 +1,75 @@
 aid: filed
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/filed.png
 name: Filed
-description: 'Filed is a company surfaced as a portfolio company of northzone and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise; ai. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Filed is an AI tax platform for accounting firms and tax professionals. It reads
+  source documents (W-2s, 1099s, K-1s, brokerage statements, prior-year returns),
+  compares them line by line against the draft return to catch errors and find
+  optimizations, performs actual data entry into professional tax software (Drake,
+  ProConnect, UltraTax, CCH Axcess, Lacerte, ProSeries), and evaluates 120+ tax
+  strategies to produce client-ready tax plans with citations. Firms keep the tax
+  software they already use; Filed sits inside the existing workflow via three
+  products — Filed Reviewer, Filed Prep, and Filed Tax Planner. Filed exposes a
+  GraphQL API (router.apps.filed.com/graphql), a remote MCP server, and an
+  embeddable binder UI. Backed by Northzone, Day One Ventures, and Neo.
 url: https://raw.githubusercontent.com/api-evangelist/filed/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - northzone
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-developer-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-- Enterprise; Ai
-apis: []
+- Tax
+- Accounting
+- Artificial Intelligence
+- Document Processing
+- GraphQL
+- Compliance
+- Enterprise
+apis:
+- aid: filed:filed-api
+  name: Filed API
+  humanURL: https://docs.apps.filed.com/apis/introduction
+  baseURL: https://router.apps.filed.com/graphql
+  tags:
+  - Tax
+  - GraphQL
+  - Documents
+  - AI
+  description: >-
+    A single GraphQL endpoint for the Filed platform. Create clients and ingest
+    source documents into a binder, trigger tax prep and tax advisor runs and poll
+    them to completion, read leadsheets and review items, annotate documents and
+    record reviewer sign-offs, and generate workpaper bundles. Authenticated with a
+    workspace-scoped API key exchanged for a short-lived Bearer access token.
+  properties:
+  - type: Documentation
+    url: https://docs.apps.filed.com/
+  - type: APIReference
+    url: https://docs.apps.filed.com/apis/introduction
+  - type: GraphQL
+    url: https://router.apps.filed.com/graphql
+  - type: GettingStarted
+    url: https://docs.apps.filed.com/guides/quickstart
+  - type: ErrorCatalog
+    url: errors/filed-problem-types.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +78,55 @@ maintainers:
 common:
 - type: Website
   url: https://www.filed.com
+- type: DeveloperPortal
+  url: https://docs.apps.filed.com/
+- type: Blog
+  url: https://www.filed.com/blog
+- type: Pricing
+  url: https://www.filed.com/pricing
+- type: SignUp
+  url: https://www.filed.com/early-access
+- type: Login
+  url: https://web.apps.filed.com/
+- type: TermsOfService
+  url: https://www.filed.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.filed.com/privacy-policy
+- type: Support
+  url: https://help.filed.com/
+- type: Authentication
+  url: authentication/filed-authentication.yml
+- type: Conventions
+  url: conventions/filed-conventions.yml
+- type: DataModel
+  url: data-model/filed-data-model.yml
+- type: Components
+  url: components/filed-components.yml
+- type: Conformance
+  url: conformance/filed-conformance.yml
+- type: Compliance
+  url: security/filed-trust-center.yml
+- type: LLMsTxt
+  url: llms/filed-llms.txt
+- type: MCPServer
+  url: https://mcp.apps.filed.com/mcp
+  name: Filed MCP Server
+  description: >-
+    Remote MCP server (OAuth via Dynamic Client Registration, no API key) exposing
+    docs, run_batch_queries, run_batch_mutations, and get_file_upload_info. Built
+    but not yet live in production. Detail in mcp/filed-mcp.yml.
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Security
+  url: security/filed-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/filed-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/filed-trust-center.yml
+- type: DomainSecurity
+  url: security/filed-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

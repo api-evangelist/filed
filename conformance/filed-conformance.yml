@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  Derived from Filed's documented API surface (docs.apps.filed.com) and Trust
+  Center (trust.filed.com). Each entry asserts conformance to a cross-cutting
+  standard with the evidence it was judged on.
+description: >-
+  Standards-conformance assertions for the Filed platform. Filed is a GraphQL
+  API (not REST/OpenAPI), so REST-oriented standards (OData, JSON:API, RFC 9457)
+  are not applicable; its MCP server uses OAuth with Dynamic Client Registration.
+standards:
+  - id: graphql
+    conforms: true
+    evidence: >-
+      Single GraphQL endpoint at router.apps.filed.com/graphql; queries, mutations,
+      unions, custom scalars, and introspection (via the MCP run_batch_queries tool)
+      per the GraphQL spec.
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      MCP server at mcp.apps.filed.com/mcp authenticates with OAuth. (Documented as
+      built but not yet live in production.)
+  - id: oauth2_dcr
+    conforms: true
+    evidence: >-
+      MCP clients register via OAuth Dynamic Client Registration (RFC 7591) — "no
+      API key required", browser consent per workspace.
+    rfc: RFC 7591
+  - id: rfc9457
+    conforms: false
+    evidence: GraphQL errors[] envelope is used instead of application/problem+json. See errors/filed-problem-types.yml.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented; background runs use optional taskId to resume.
+  - id: pagination
+    conforms: true
+    evidence: Consistent offset/limit pagination across all list fields (conventions/filed-conventions.yml).
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 Type 1, Type 2, and SOC 3 attestations published on trust.filed.com.
+  - id: rfc3339
+    conforms: true
+    evidence: Date scalar is an ISO 8601 / RFC 3339 timestamp string across all timestamp fields.
+notes:
+  - Compliance program detail lives in security/filed-trust-center.yml (Compliance pointer).

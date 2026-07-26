@@ -1,0 +1,56 @@
+# method: searched
+# source: https://docs.apps.filed.com/llms.txt
+# generated: 2026-07-19
+
+# Filed Engineering
+
+## Docs
+
+- [Binder](https://docs.apps.filed.com/apis/binder.md): Read a client's binder: list uploaded files, missing items, message counts, and search across the binder
+- [Clients](https://docs.apps.filed.com/apis/clients.md): Create clients, list and fetch them, and add documents to a client's binder
+- [Conventions](https://docs.apps.filed.com/apis/conventions.md): Cross-cutting conventions for the Filed GraphQL API: custom scalars, IDs, pagination, sorting, and filtering
+- [Document messages](https://docs.apps.filed.com/apis/document-messages.md): Annotate binder documents with notes and flags, thread replies under a message, and record reviewer sign-offs with the document-message API
+- [Health](https://docs.apps.filed.com/apis/health.md): Check that the Filed API and its services are reachable
+- [Introduction](https://docs.apps.filed.com/apis/introduction.md): Reference for the Filed GraphQL API: endpoint, authentication, and operations
+- [Leadsheets and review](https://docs.apps.filed.com/apis/leadsheets.md): Read a client's leadsheets, drill into field-level trace and sourcing, and sign off on review items
+- [Me](https://docs.apps.filed.com/apis/me.md): Identify the authenticated caller: an account-wide user or a workspace member, depending on the token
+- [Tax planning](https://docs.apps.filed.com/apis/planning.md): Start a tax advisor run, poll it to completion, read the plan and its strategies, and update a strategy's status
+- [Skills](https://docs.apps.filed.com/apis/skills.md): List, inspect, promote, approve, deny, activate, and delete the skills that power Playbook workflows
+- [Tasks](https://docs.apps.filed.com/apis/tasks.md): List background tasks and check the status of a single task
+- [Tax prep](https://docs.apps.filed.com/apis/tax-prep.md): Start a tax prep run, poll it to completion, and read the review items it produces
+- [Workpapers](https://docs.apps.filed.com/apis/workpapers.md): Save a tax workpaper workbook, generate a bundled workpaper download, and trigger workpaper translation
+- [Authentication](https://docs.apps.filed.com/guides/authentication.md): Create an API key, understand its scope, and exchange it for an access token
+- [Connect via MCP](https://docs.apps.filed.com/guides/connect-mcp.md): Connect Claude, Codex, and other MCP clients to Filed with OAuth, no API key required
+- [Embed the binder in your product](https://docs.apps.filed.com/guides/embedding-the-binder.md): Show a client's binder inside your own site as a chromeless iframe, authenticated with a workspace token
+- [Introduction](https://docs.apps.filed.com/guides/introduction.md): Introduction to Filed APIs
+- [Making requests](https://docs.apps.filed.com/guides/making-requests.md): Shape a GraphQL request, pass variables, and read error responses
+- [Quickstart](https://docs.apps.filed.com/guides/quickstart.md): Go from zero to a processed client in five steps: authenticate, upload, create, and poll
+- [Annotate a document](https://docs.apps.filed.com/guides/recipes/annotate-a-document.md): Leave a note or flag on a binder document, read existing annotations, reply in a thread, and edit or hide a message
+- [Automate a workflow with Skills (Playbook)](https://docs.apps.filed.com/guides/recipes/automate-with-skills.md): List a workspace's skills, promote a personal skill to firm-wide, toggle it on or off, and scope which skills apply to a single run
+- [Browse a client's binder](https://docs.apps.filed.com/guides/recipes/browse-the-binder.md): List the files in a client's binder, check the missing-item checklist, ignore or restore an item, and search across the binder
+- [Generate a workpaper bundle](https://docs.apps.filed.com/guides/recipes/generate-a-workpaper-bundle.md): Queue a server-side workpaper render, poll it to completion, download the bundle, and optionally save an edited workbook or list templates
+- [Onboard a client and ingest documents](https://docs.apps.filed.com/guides/recipes/onboard-a-client.md): Create a new client with initial documents, or add documents to an existing client, and track binder ingestion
+- [Review a return and sign off](https://docs.apps.filed.com/guides/recipes/review-and-sign-off.md): Read a client's leadsheets and review items, then record reviewer sign-offs with the real document-message write surface
+- [Run tax planning / advisory](https://docs.apps.filed.com/guides/recipes/run-tax-planning.md): Start a tax advisor run for a client, poll it to completion, read the plan, and update a strategy's status
+- [Run tax prep end to end](https://docs.apps.filed.com/guides/recipes/run-tax-prep.md): Start a tax prep run for a client, poll it to completion, and read the review items it produces
+- [Uploading documents](https://docs.apps.filed.com/guides/uploading-documents.md): Upload a file (resumable or direct), get an upload ID, and attach it to a client's binder
+- [Introduction](https://docs.apps.filed.com/index.md): Filed's developer portal
+- [Add users to workspace](https://docs.apps.filed.com/legacy/apis/endpoint/add-users-to-workspace.md): Add tax firm users to a workspace by email addresses
+- [Collect provider connection](https://docs.apps.filed.com/legacy/apis/endpoint/collect-provider-connection.md): Verify a provider connection and provide additional configuration
+- [Create connection job](https://docs.apps.filed.com/legacy/apis/endpoint/create-connection-job.md): Create an import job that can be triggered to process all clients attached to it
+- [Create job work artifacts](https://docs.apps.filed.com/legacy/apis/endpoint/create-work-artifacts.md): Attach files to a job work
+- [Create job works](https://docs.apps.filed.com/legacy/apis/endpoint/create-works.md): Attach clients to an import job
+- [Create workspace](https://docs.apps.filed.com/legacy/apis/endpoint/create-workspace.md): Create a new workspace for a tax firm customer
+- [Deep links](https://docs.apps.filed.com/legacy/apis/endpoint/deep-links.md): Generate deep links to redirect tax firm users to Filed
+- [Get client files](https://docs.apps.filed.com/legacy/apis/endpoint/get-client-files.md): List files for a specific client from a provider connection
+- [Get connection clients](https://docs.apps.filed.com/legacy/apis/endpoint/get-connection-clients.md): List clients from a provider connection
+- [Get job work artifact status](https://docs.apps.filed.com/legacy/apis/endpoint/get-job-work-artifacts.md): Query artifact status for job works via connection
+- [Get job works](https://docs.apps.filed.com/legacy/apis/endpoint/get-job-works.md): Query job works by ID via a provider connection
+- [Get workspace connections](https://docs.apps.filed.com/legacy/apis/endpoint/get-workspace-connections.md): List provider connections for a workspace with their status
+- [Login via API token](https://docs.apps.filed.com/legacy/apis/endpoint/login-via-personal-api-token.md): Exchange an API key for an access token
+- [Start provider connection](https://docs.apps.filed.com/legacy/apis/endpoint/start-provider-connection.md): Initialize a provider connection for a workspace with partner credentials
+- [Upload connection file](https://docs.apps.filed.com/legacy/apis/endpoint/upload-connection-file.md): Upload a file to a client in a provider connection
+- [Customer integration guide](https://docs.apps.filed.com/legacy/apis/guides/customer.md): Learn how to integrate Filed's API as a customer and authenticate your requests
+- [Partner integration guide](https://docs.apps.filed.com/legacy/apis/guides/partner.md): Learn how to integrate Filed's API as a partner and onboard your customers
+- [Tax prep integration guide](https://docs.apps.filed.com/legacy/apis/guides/tax-prep.md): Learn how to create tax preparations in Filed by pushing clients from your platform or allowing Filed to pull clients
+- [Introduction](https://docs.apps.filed.com/legacy/apis/introduction.md): Introduction to Filed APIs

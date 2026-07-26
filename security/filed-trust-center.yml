@@ -1,0 +1,35 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://trust.filed.com/
+url: https://trust.filed.com/
+description: >-
+  Filed operates a public Trust Center documenting its security program,
+  compliance attestations, subprocessors, and available assurance documents.
+certifications:
+  - SOC 2 Type 1
+  - SOC 2 Type 2
+  - SOC 3
+documents:
+  - SOC 2 Type 2 report
+  - SOC 3 report
+  - Penetration testing reports (web application and network)
+  - Privacy Policy
+  - Terms of Service
+  - Incident response procedures
+subprocessors:
+  - Microsoft Azure
+  - Google
+  - Sentry
+  - Pylon
+  - incident.io
+security_contact: security@filed.com
+evidence:
+  - source: https://trust.filed.com/
+    keywords:
+      - soc 2 type 2
+      - soc 3
+      - penetration test
+      - trust center
+notes:
+  - No ISO 27001, PCI DSS, HIPAA, or FedRAMP attestation was listed on the Trust Center as of this probe.

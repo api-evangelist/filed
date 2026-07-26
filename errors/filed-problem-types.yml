@@ -1,0 +1,36 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.apps.filed.com/guides/making-requests
+format: graphql
+description: >-
+  Filed is a GraphQL API and does not use RFC 9457 problem+json. Errors are
+  returned in the standard GraphQL errors[] array; each entry carries a message,
+  an optional path (for mid-operation field failures), and an extensions object
+  with a machine-readable code. On a pre-resolver failure data is null/omitted;
+  on a field-resolver failure that field is null in data with a matching errors[]
+  entry. Codes captured from the documented error model.
+envelope:
+  container: errors[]
+  entry_fields: [message, locations, path, extensions.code]
+  partial_failure: field nulled in data + matching errors[] entry with path
+problem_types:
+  - code: GRAPHQL_VALIDATION_FAILED
+    title: Query validation failed
+    meaning: >-
+      The query references a field, argument, or type that does not exist, or is
+      otherwise malformed. Fails before any resolver runs; one errors[] entry per
+      invalid field. data is omitted.
+    remediation: Fix the query against the schema (introspection via run_batch_queries or the API reference).
+  - code: UNAUTHENTICATED
+    title: Authentication required / invalid token
+    meaning: >-
+      A non-@public operation was called without a valid Bearer token, or the
+      token expired (~30 min lifetime). Documented as the auth-error shape for
+      calls that omit a token.
+    remediation: >-
+      Re-exchange the API key via exchangeSurfaceRefreshTokenForAccessTokens and
+      send the fresh workspaceToken as Authorization: Bearer.
+    note: code label inferred from the documented "authentication error (no token)" example; verify exact extensions.code against a live 401 response.
+notes:
+  - Read-only keys that attempt a mutation are rejected at the operation level (see authentication/filed-authentication.yml access levels).
+  - See conventions/filed-conventions.yml (error_envelope) for the cross-cutting shape.

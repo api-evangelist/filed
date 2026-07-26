@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.apps.filed.com/guides/embedding-the-binder
+description: >-
+  Filed offers an embeddable UI surface: a client's binder (Documents, Forms,
+  and Leadsheets) can be rendered inside a partner product as a chromeless
+  iframe, with none of the Filed app's sidebar or top bar. This is a UI embed,
+  not a GraphQL call — the visitor's browser authenticates with a cookie set via
+  a signed sign-in URL, not a Bearer header.
+families:
+  - name: Embedded Binder
+    kind: hosted-iframe-embed
+    description: >-
+      Chromeless binder UI (Documents / Forms / Leadsheets) embedded via <iframe>.
+    auth: >-
+      Server exchanges an API key for a short-lived workspaceToken, then builds a
+      sign-in URL that sets a session cookie and redirects to the embed path.
+    sign_in_url: https://web.apps.filed.com/sign-in/token?workspace_token=<jwt>&redirect=<path>
+    embed_path: /embed/workspaces/{workspaceId}/clients/{clientId}/binder
+    params:
+      workspace_token: short-lived workspaceToken; must carry a workspaceId claim
+      redirect: same-origin relative path (URL-encoded) to land on after cookie set
+    security_notes:
+      - Keep the API key on the server; only the short-lived workspaceToken reaches the browser.
+      - The workspaceToken is a bearer credential for the workspace — mint it right before render, never log it.
+loaders: []
+notes:
+  - Distinct from an SDK/client library — this is a prebuilt hosted UI surface.
+  - /sign-in/token also accepts a user_token param for a different (non-embed) sign-in flow.

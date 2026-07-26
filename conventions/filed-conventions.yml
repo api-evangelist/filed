@@ -1,0 +1,86 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://docs.apps.filed.com/apis/conventions and
+  https://docs.apps.filed.com/guides/making-requests and
+  https://docs.apps.filed.com/guides/authentication
+description: >-
+  Cross-cutting runtime semantics for the Filed GraphQL API: authentication
+  style, identifiers, pagination, sorting, filtering, custom scalars, error
+  envelope, and versioning. These are the developer-experience conventions that
+  apply to every operation.
+base_url: https://router.apps.filed.com/graphql
+api_style: GraphQL over HTTPS (single POST endpoint, JSON body of query + variables)
+
+authentication:
+  scheme: Bearer access token (workspaceToken) on every call except @public ops
+  model: two-step — long-lived workspace-scoped API key exchanged for a ~30-min access token
+  exchange_mutation: exchangeSurfaceRefreshTokenForAccessTokens
+  public_operations: [health, exchangeSurfaceRefreshTokenForAccessTokens]
+  detail: authentication/filed-authentication.yml
+  docs: https://docs.apps.filed.com/guides/authentication
+
+idempotency:
+  supported: false
+  note: >-
+    Filed does not document an idempotency-key mechanism. Mutations that start
+    background work (triggerTaxPrep, triggerTaxAdvisor) accept an optional taskId
+    to address/resume a run rather than an idempotency key. GraphQL queries are
+    inherently side-effect-free.
+
+identifiers:
+  type: ID scalar, opaque string
+  format: UUIDv7 (time-ordered; first three segments encode a millisecond Unix timestamp)
+  guidance: round-trip verbatim; never parse, slice, or construct IDs client-side
+
+pagination:
+  style: offset
+  request_params:
+    offset: zero-based number of items to skip (Int, nullable, default 0)
+    limit: max items per response (Int, nullable)
+  response: non-null list of non-null items ([Client!]!, [Task!]!); empty page is []
+  cursor_support: false
+  total_count: false
+  guidance: walk offset forward in steps of limit until fewer than limit items return
+  applies_to: [Workspace.clients, Workspace.tasks, Workspace.workspaceUsers]
+  docs: https://docs.apps.filed.com/apis/conventions
+
+sorting:
+  input: "SortBy { field: String!, order: SortByOrder! }"
+  order_values: [ASC, DESC]
+  note: both field and order are required inside SortBy; omit the whole argument for default order
+
+filtering:
+  style: typed filter input per entity (ClientFilters, TaskFilters)
+  semantics: every key optional; combining keys applies logical AND
+
+scalars:
+  - name: ID
+    note: opaque UUIDv7 string
+  - name: Date
+    note: ISO 8601 / RFC 3339 timestamp string, e.g. 2025-07-04T17:21:43.123Z
+  - name: JSON
+    note: arbitrary JSON value (used for AI task results, e.g. TaskTaxAdvisorResult.byDomain); no sub-selection
+
+error_envelope:
+  shape: GraphQL errors[] array, each entry has message, optional path, and extensions.code
+  detail: errors/filed-problem-types.yml
+  partial_failure: field resolver failure nulls that field in data and adds a matching errors[] entry with path
+  docs: https://docs.apps.filed.com/guides/making-requests
+
+async_tasks:
+  pattern: background task + poll to completion
+  note: >-
+    Long-running AI operations (tax prep, tax advisor, workpaper generation) are
+    started by a trigger mutation returning a taskId, then polled via ListTasks /
+    TaskResult until status COMPLETED. There is no webhook/callback surface.
+
+versioning:
+  scheme: unversioned single endpoint; a separate documented "legacy" API surface
+    exists at docs.apps.filed.com/legacy/apis for partner/connection integrations
+  docs: https://docs.apps.filed.com/legacy/apis/introduction
+
+cross_links:
+  authentication: authentication/filed-authentication.yml
+  errors: errors/filed-problem-types.yml
+  data_model: data-model/filed-data-model.yml

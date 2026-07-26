@@ -1,0 +1,103 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  Derived from the Filed GraphQL type definitions published across
+  docs.apps.filed.com/apis/* (introduction, clients, tasks, planning, tax-prep,
+  binder, document-messages, leadsheets, workpapers, me).
+description: >-
+  Entity-relationship graph for the Filed GraphQL API, derived from documented
+  types and the id-reference fields that link them. The root of every
+  workspace-scoped read is `me`, resolved as a WorkspaceUser whose `workspace`
+  field is the graph entry point.
+id_format: UUIDv7 opaque string (ID scalar)
+root: me (union User | WorkspaceUser)
+entities:
+  - name: User
+    key: id
+    note: Account-wide identity; returned from `me` with a userToken.
+  - name: WorkspaceUser
+    key: id
+    note: Membership linking a User to a Workspace (role, createdAt); returned from `me` with a workspaceToken.
+  - name: Workspace
+    key: id
+    note: Tenant boundary for a tax firm; owns clients, tasks, and members.
+  - name: Client
+    key: id
+    fields: [name, externalId, status, returnType, taxYear, createdAt, assignees]
+    note: A taxpayer/return under a workspace; has a binder and tasks.
+  - name: Binder
+    note: A client's document set (Documents, Forms, Leadsheets) with missing-item checklist and messages.
+  - name: BinderSubdocument
+    note: Individual extracted document/form within a binder.
+  - name: DocumentMessage
+    note: Note/flag/sign-off annotation on a binder document; threadable.
+  - name: Task
+    key: id
+    fields: [type, status, triggeredBy, startedAt, completedAt, result]
+    note: Background job (e.g. TAX_PREP, tax advisor, workpaper); result is a TaskResult union.
+  - name: TaskTaxPrepResult
+    note: Result of a tax prep run — summary, counts, reviewItems[] (TaxPrepReviewItem).
+  - name: TaskTaxAdvisorResult
+    note: Result of a tax advisor run — strategyTotal, byDomain/bySavingsHorizon JSON.
+  - name: AdvisorPlan
+    key: runId
+    note: Tax plan produced by a tax advisor run; contains AdvisorStrategy entries.
+  - name: AdvisorStrategy
+    key: id
+    fields: [strategyId, domain, title, estimatedSavingsCents, savingsHorizon, status]
+    note: One recommended tax strategy within an AdvisorPlan.
+  - name: Skill
+    note: Playbook skill (workspace- or user-scoped) applied during advisor/prep runs.
+relationships:
+  - from: WorkspaceUser
+    to: Workspace
+    type: belongs_to
+    via: workspace
+  - from: WorkspaceUser
+    to: User
+    type: belongs_to
+    via: user
+  - from: Workspace
+    to: WorkspaceUser
+    type: has_many
+    via: workspaceUsers
+  - from: Workspace
+    to: Client
+    type: has_many
+    via: clients
+  - from: Workspace
+    to: Task
+    type: has_many
+    via: tasks
+  - from: Client
+    to: Task
+    type: has_many
+    via: tasks
+  - from: Client
+    to: Binder
+    type: has_one
+    via: binder
+  - from: Client
+    to: WorkspaceUser
+    type: has_many
+    via: assignees
+  - from: Binder
+    to: BinderSubdocument
+    type: has_many
+    via: subdocuments
+  - from: BinderSubdocument
+    to: DocumentMessage
+    type: has_many
+    via: documentMessages
+  - from: Task
+    to: TaskTaxPrepResult
+    type: has_one
+    via: result (TaskResult union member)
+  - from: Task
+    to: TaskTaxAdvisorResult
+    type: has_one
+    via: result (TaskResult union member)
+  - from: AdvisorPlan
+    to: AdvisorStrategy
+    type: has_many
+    via: strategies

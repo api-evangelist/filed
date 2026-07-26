@@ -1,0 +1,31 @@
+generated: '2026-07-19'
+method: generated
+source: >-
+  Generated from Filed's documented GraphQL operations and guide recipes at
+  docs.apps.filed.com. Every operationId below is real and grep-able in the API
+  reference; no operations were invented. No provider-published Agent Skills or
+  AGENTS.md was found.
+api: Filed GraphQL API
+endpoint: https://router.apps.filed.com/graphql
+auth: >-
+  Exchange a workspace API key via exchangeSurfaceRefreshTokenForAccessTokens,
+  then send the workspaceToken as Authorization: Bearer on every call.
+conventions: conventions/filed-conventions.yml
+errors: errors/filed-problem-types.yml
+skills:
+  - name: filed-onboard-client
+    file: skills/filed-onboard-client.md
+    description: Create a client and ingest source documents into its binder.
+    operations: [exchangeSurfaceRefreshTokenForAccessTokens, me, get_file_upload_info, createClient, addClientDocuments, getClientBinderMissingItems]
+  - name: filed-run-tax-prep
+    file: skills/filed-run-tax-prep.md
+    description: Start a tax prep run for a client and read its review items.
+    operations: [triggerTaxPrep, listTasks, taskResult, clientTaskStatus]
+  - name: filed-run-tax-planning
+    file: skills/filed-run-tax-planning.md
+    description: Start a tax advisor run, read the plan, and update a strategy's status.
+    operations: [triggerTaxAdvisor, pollTaxAdvisor, clientAdvisorPlan, taxAdvisorResult, setAdvisorStrategyStatus]
+  - name: filed-review-and-sign-off
+    file: skills/filed-review-and-sign-off.md
+    description: Read a client's leadsheets and review items, then record reviewer sign-offs.
+    operations: [getClientBinderSubdocuments, getClientDocumentMessages, createDocumentMessage, createDocumentMessageThread, updateDocumentMessage]
