@@ -2,15 +2,12 @@ generated: '2026-07-19'
 method: searched
 status: announced
 source: https://docs.apps.filed.com/guides/connect-mcp
-description: >-
-  Filed operates a remote MCP server at https://mcp.apps.filed.com/mcp,
-  authenticated with OAuth via Dynamic Client Registration (no API key required)
-  and scoped to a single workspace approved on the Filed consent screen. The
-  server does NOT expose the whole GraphQL schema as individual MCP tools;
-  instead it exposes a small set of general-purpose tools and expects the
-  assistant to read the docs and write GraphQL itself. NOTE: Filed documents the
-  server as built but "not live in production yet" — the URL may not resolve
-  until it ships. Tool list captured verbatim from the Filed MCP documentation.
+description: 'Filed operates a remote MCP server at https://mcp.apps.filed.com/mcp, authenticated with
+  OAuth via Dynamic Client Registration (no API key required) and scoped to a single workspace approved
+  on the Filed consent screen. The server does NOT expose the whole GraphQL schema as individual MCP tools;
+  instead it exposes a small set of general-purpose tools and expects the assistant to read the docs and
+  write GraphQL itself. NOTE: Filed documents the server as built but "not live in production yet" — the
+  URL may not resolve until it ships. Tool list captured verbatim from the Filed MCP documentation.'
 server:
   name: filed
   transport: http
@@ -25,24 +22,27 @@ clients:
   chatgpt: developer-mode custom connector
   codex: remote server, streamable HTTP transport
 tools:
-  - name: docs
-    description: >-
-      Points the assistant at the Filed API docs (docs.apps.filed.com), including
-      the LLM-readable /llms.txt variant. Clients are instructed to call this first.
-  - name: run_batch_queries
-    description: >-
-      Runs one or more read-only GraphQL queries. Queries run in parallel (chunked,
-      five at a time); results return in input order. Full schema is discoverable
-      via a standard GraphQL introspection query through this tool.
-  - name: run_batch_mutations
-    description: >-
-      Runs one or more GraphQL mutations, in order. If one fails the rest still run;
-      each result is checked individually.
-  - name: get_file_upload_info
-    description: >-
-      Returns a short-lived (10-minute) upload token and the platform's tus upload
-      URL, for attaching documents to a client's binder.
+- name: docs
+  description: Points the assistant at the Filed API docs (docs.apps.filed.com), including the LLM-readable
+    /llms.txt variant. Clients are instructed to call this first.
+- name: run_batch_queries
+  description: Runs one or more read-only GraphQL queries. Queries run in parallel (chunked, five at a
+    time); results return in input order. Full schema is discoverable via a standard GraphQL introspection
+    query through this tool.
+- name: run_batch_mutations
+  description: Runs one or more GraphQL mutations, in order. If one fails the rest still run; each result
+    is checked individually.
+- name: get_file_upload_info
+  description: Returns a short-lived (10-minute) upload token and the platform's tus upload URL, for attaching
+    documents to a client's binder.
 notes:
-  - The server proxies the same GraphQL API documented at https://docs.apps.filed.com/apis/introduction
-  - File bytes do not travel through tool calls; uploads use the resumable tus flow via get_file_upload_info.
-  - Revoke by deleting the MCP entry from the workspace Integrations page; next request returns 401.
+- The server proxies the same GraphQL API documented at https://docs.apps.filed.com/apis/introduction
+- File bytes do not travel through tool calls; uploads use the resumable tus flow via get_file_upload_info.
+- Revoke by deleting the MCP entry from the workspace Integrations page; next request returns 401.
+deployment:
+  mode: remote
+  endpoint: https://mcp.apps.filed.com/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
