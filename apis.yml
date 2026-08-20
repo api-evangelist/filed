@@ -52,6 +52,11 @@ apis:
   - Tax
   - GraphQL
   - Documents
+  - Artificial Intelligence
+  tags_raw:
+  - Tax
+  - GraphQL
+  - Documents
   - AI
   description: >-
     A single GraphQL endpoint for the Filed platform. Create clients and ingest
