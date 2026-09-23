@@ -1,0 +1,1 @@
+{"resource":"https://mcp.apps.filed.com/mcp","authorization_servers":["https://mcp.apps.filed.com"],"bearer_methods_supported":["header"],"resource_name":"Filed","resource_documentation":"https://docs.apps.filed.com","resource_policy_uri":"https://trust.filed.com/?itemName=legal","resource_tos_uri":"https://trust.filed.com/?itemName=legal"}
