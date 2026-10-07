@@ -1,0 +1,35 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.filed.com/pricing
+sources:
+- https://www.filed.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: 'Enterprise Deploy: On-premise deployment options'
+published: false
+note: No numeric prices; both tiers 'Custom' with pricing set on a discovery call. Page states flat monthly
+  plan scoped to client book, no per-seat/per-return charges. On-premise deployment offered on Enterprise
+  (paid), hence managed+licensed.
+plan_count: 2
+plans:
+- name: Pro
+  price_text: Custom
+  period: none
+  unit: Based on total taxpayers
+  included_quota: 'Full Access: Filed platform + Prowork + Excel Add-in; Unlimited Seats; Firm-Wide Coverage;
+    8-week Onboarding; Quarterly Reviews'
+- name: Enterprise
+  price_text: Custom
+  period: none
+  unit: Based on total taxpayers
+  included_quota: Everything in pro, plus dedicated support with 6-hour SLA, on-premise deployment, SSO/SCIM,
+    custom DPA, multi-office/white-label, custom integrations, executive sponsorship
