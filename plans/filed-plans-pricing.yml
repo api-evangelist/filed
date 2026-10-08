@@ -33,3 +33,25 @@ plans:
   unit: Based on total taxpayers
   included_quota: Everything in pro, plus dedicated support with 6-hour SLA, on-premise deployment, SSO/SCIM,
     custom DPA, multi-office/white-label, custom integrations, executive sponsorship
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Pro
+    access: other
+    model: unstated
+    model_how: derived
+    units:
+    - other
+    periods:
+    - none
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units:
+    - other
+    periods:
+    - none
