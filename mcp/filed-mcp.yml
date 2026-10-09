@@ -46,3 +46,18 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://mcp.apps.filed.com/mcp
+  metadata_url: https://mcp.apps.filed.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.apps.filed.com/mcp
+    authorization_servers:
+    - https://mcp.apps.filed.com
+    bearer_methods_supported:
+    - header
+    resource_name: Filed
+    resource_documentation: https://docs.apps.filed.com
