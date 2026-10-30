@@ -64,6 +64,106 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Filed is a company surfaced as a portfolio company of northzone and added to the API Evangelist network as a stub for enrichment. Sector: enterprise; ai. This profile is a lead awaiting the enrichment pipeline.
+Filed is an AI tax platform for accounting firms and tax professionals. It reads source documents (W-2s, 1099s, K-1s, brokerage statements, prior-year returns), compares them line by line against the draft return to catch errors and find optimizations, performs actual data entry into professional tax software (Drake, ProConnect, UltraTax, CCH Axcess, Lacerte, ProSeries), and evaluates 120+ tax strategies to produce client-ready tax plans with citations. Firms keep the tax software they already use; Filed sits inside the existing workflow via three products — Filed Reviewer, Filed Prep, and Filed Tax Planner. Filed exposes a GraphQL API (router.apps.filed.com/graphql), a remote MCP server, and an embeddable binder UI. Backed by Northzone, Day One Ventures, and Neo.
 
-Backed by: northzone — https://www.filed.com
+**Areas:** Company · Tax · Accounting · Artificial Intelligence · Document Processing · GraphQL · Compliance · Enterprise
+
+## Filed on APIs.io
+
+Everything profiled for Filed is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/filed/](https://apis.io/providers/filed/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Filed API](https://apis.io/apis/filed/filed-api/) — A single GraphQL endpoint for the Filed platform. Create clients and ingest source documents into a binder, trigger tax prep and tax advisor runs and poll…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Filed MCP Server](https://apis.io/servers/filed/filed-mcp-server/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Filed Authentication](https://apis.io/security/filed/filed-authentication/)
+- [Filed Domain Security](https://apis.io/security/filed/filed-domain-security/)
+- [Filed Trust Center](https://apis.io/security/filed/filed-trust-center/)
+- [Filed Vulnerability Disclosure](https://apis.io/security/filed/filed-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Filed Plans Pricing](https://apis.io/plans/filed/filed-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.filed.com)
+- [Pricing](https://www.filed.com/pricing)
+- [Sign up](https://www.filed.com/early-access)
+- [Support](https://help.filed.com/)
+- [Blog](https://www.filed.com/blog)
+- [Terms of service](https://www.filed.com/terms-of-service)
+- [Privacy policy](https://www.filed.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 40.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 81.6 |
+
+**Agent readiness 31.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/filed/](https://apis.io/providers/filed/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Filed: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/filed/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
